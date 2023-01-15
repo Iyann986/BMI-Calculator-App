@@ -1,18 +1,20 @@
-// ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, avoid_unnecessary_containers, sized_box_for_whitespace, unused_local_variable, unused_import
+// ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_string_interpolations, avoid_unnecessary_containers, sized_box_for_whitespace, unused_local_variable, unused_import, must_be_immutable, depend_on_referenced_packages
+
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:tugas1_bmiapp/constants/constants.dart';
 import 'package:tugas1_bmiapp/helpers/bmi_calculator.dart';
 import 'package:tugas1_bmiapp/views/bmi_DataScreen.dart';
 
+import 'package:pretty_gauge/pretty_gauge.dart';
+
 class ResultScreen extends StatelessWidget {
   const ResultScreen({
-    Key? key,
+    super.key,
     required this.bmi,
-    //this.bmiCalculator,
-  }) : super(key: key);
+  });
   final double bmi;
-  //final BmiCalculator? bmiCalculator;
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,35 @@ class ResultScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        bmi.toStringAsFixed(1),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 100,
-                          fontWeight: FontWeight.bold,
+                      PrettyGauge(
+                        gaugeSize: 300,
+                        minValue: 0,
+                        maxValue: 40,
+                        segments: [
+                          GaugeSegment('UnderWeight', 18.5, Colors.red),
+                          GaugeSegment('Normal', 6.4, Colors.green),
+                          GaugeSegment('OverWeight', 5, Colors.orange),
+                          GaugeSegment('Obese', 10.1, Colors.pink),
+                        ],
+                        valueWidget: Text(
+                          bmi.toStringAsFixed(1),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
+                        currentValue: bmi.toDouble(),
+                        needleColor: Colors.blue,
                       ),
+                      // Text(
+                      //   bmi.toStringAsFixed(1),
+                      //   style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontSize: 100,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                       Text(
                         bmiCalculator.bmiDescription!,
                         textAlign: TextAlign.center,

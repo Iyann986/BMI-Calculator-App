@@ -45,7 +45,10 @@ class _DataScreenState extends State<DataScreen> {
                       bordercolor:
                           (gender == "male") ? Colors.white : primaryColor,
                       child: GenderIconText(
-                        icon: Icons.man,
+                        image: Image.asset(
+                          "assets/images/man.png",
+                          width: 50,
+                        ),
                         title: 'Male',
                       ),
                     ),
@@ -61,7 +64,10 @@ class _DataScreenState extends State<DataScreen> {
                       bordercolor:
                           (gender == "female") ? Colors.white : primaryColor,
                       child: GenderIconText(
-                        icon: Icons.girl,
+                        image: Image.asset(
+                          "assets/images/woman.png",
+                          width: 50,
+                        ),
                         title: 'Female',
                       ),
                     ),
@@ -334,22 +340,23 @@ class GenderIconText extends StatelessWidget {
   const GenderIconText({
     Key? key,
     required this.title,
-    required this.icon,
+    required this.image,
   }) : super(key: key);
 
   final String title;
-  final IconData icon;
+  final Image image;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          icon,
-          size: 80,
-          color: Colors.white,
-        ),
+        image,
+        // Icon(
+        //   icon,
+        //   size: 80,
+        //   color: Colors.white,
+        // ),
         SizedBox(
           height: 10,
         ),

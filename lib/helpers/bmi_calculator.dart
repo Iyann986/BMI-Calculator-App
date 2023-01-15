@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unnecessary_import
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ class BmiCalculator {
   double? bmi;
   String? bmiCategory;
   String? bmiDescription;
+  Color? bmiStatusColor;
 
   BmiCalculator({required this.height, required this.weight});
   BmiCalculator.fromBmiValue(this.bmi) {
@@ -29,20 +30,28 @@ class BmiCalculator {
     String category = "";
     if (bmi! < 16.0) {
       category = underweightSevere;
+      bmiStatusColor = Colors.red;
     } else if (bmi! < 17) {
       category = underweightModerate;
+      bmiStatusColor = Colors.red;
     } else if (bmi! < 18.5) {
       category = underweightMild;
+      bmiStatusColor = Colors.red;
     } else if (bmi! < 25) {
       category = normal;
+      bmiStatusColor = Colors.green;
     } else if (bmi! < 30) {
       category = overweight;
+      bmiStatusColor = Colors.orange;
     } else if (bmi! < 35) {
       category = obeseI;
+      bmiStatusColor = Colors.pink;
     } else if (bmi! < 40) {
       category = obeseII;
+      bmiStatusColor = Colors.pink;
     } else if (bmi! >= 40) {
       category = obeseIII;
+      bmiStatusColor = Colors.pink;
     }
     bmiCategory = category;
     return bmiCategory!;
